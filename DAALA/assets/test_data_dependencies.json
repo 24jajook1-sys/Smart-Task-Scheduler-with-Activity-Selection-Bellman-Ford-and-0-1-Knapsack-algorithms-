@@ -1,0 +1,93 @@
+{
+  "testScenario": "Software Development Pipeline - With Dependencies",
+  "description": "Complete SDLC workflow with task dependencies to test Bellman-Ford",
+  "taskCount": 8,
+  "workCapacity": 40,
+  "tasks": [
+    {
+      "id": 1,
+      "name": "Project Initialization",
+      "startTime": 0,
+      "finishTime": 2,
+      "profit": 50,
+      "priority": "High",
+      "dependencies": [],
+      "note": "Must be done first"
+    },
+    {
+      "id": 2,
+      "name": "Requirements Analysis",
+      "startTime": 1,
+      "finishTime": 5,
+      "profit": 100,
+      "priority": "High",
+      "dependencies": [1],
+      "note": "Depends on project initialization"
+    },
+    {
+      "id": 3,
+      "name": "System Design",
+      "startTime": 3,
+      "finishTime": 8,
+      "profit": 150,
+      "priority": "High",
+      "dependencies": [2],
+      "note": "Depends on requirements"
+    },
+    {
+      "id": 4,
+      "name": "Database Schema",
+      "startTime": 5,
+      "finishTime": 9,
+      "profit": 120,
+      "priority": "High",
+      "dependencies": [3],
+      "note": "Depends on design"
+    },
+    {
+      "id": 5,
+      "name": "Frontend Development",
+      "startTime": 7,
+      "finishTime": 12,
+      "profit": 180,
+      "priority": "High",
+      "dependencies": [3],
+      "note": "Depends on design"
+    },
+    {
+      "id": 6,
+      "name": "Backend Development",
+      "startTime": 8,
+      "finishTime": 14,
+      "profit": 200,
+      "priority": "High",
+      "dependencies": [4],
+      "note": "Depends on database"
+    },
+    {
+      "id": 7,
+      "name": "Integration Testing",
+      "startTime": 12,
+      "finishTime": 16,
+      "profit": 130,
+      "priority": "Medium",
+      "dependencies": [5, 6],
+      "note": "Depends on both frontend and backend"
+    },
+    {
+      "id": 8,
+      "name": "Deployment",
+      "startTime": 15,
+      "finishTime": 18,
+      "profit": 100,
+      "priority": "High",
+      "dependencies": [7],
+      "note": "Final step after testing"
+    }
+  ],
+  "expectedResults": {
+    "note": "Should respect all dependencies and schedule tasks in correct order",
+    "criticalPath": [1, 2, 3, 4, 6, 7, 8],
+    "totalProjectDuration": "18 hours minimum (following dependencies)"
+  }
+}

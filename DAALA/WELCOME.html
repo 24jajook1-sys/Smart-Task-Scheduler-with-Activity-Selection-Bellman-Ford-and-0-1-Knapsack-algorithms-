@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Task Scheduler - Welcome</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #111827 0%, #1F2937 100%);
+            color: #F3F4F6;
+            min-height: 100vh;
+            padding: 2rem;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 3rem 0;
+            background: linear-gradient(135deg, #3B82F6, #2563EB);
+            border-radius: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .header p {
+            font-size: 1.25rem;
+            opacity: 0.9;
+        }
+        
+        .emoji {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #10B981, #059669);
+            color: white;
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #F59E0B, #D97706);
+            color: white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+        
+        .feature-card {
+            background: #1F2937;
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 2px solid #374151;
+            transition: all 0.3s ease;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #3B82F6;
+            box-shadow: 0 10px 15px -3px rgba(59, 130, 246, 0.3);
+        }
+        
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        .feature-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #60A5FA;
+        }
+        
+        .feature-card ul {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .feature-card li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        
+        .feature-card li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10B981;
+            font-weight: bold;
+        }
+        
+        .docs-section {
+            background: #1F2937;
+            padding: 2rem;
+            border-radius: 1rem;
+            border: 2px solid #374151;
+            margin: 2rem 0;
+        }
+        
+        .docs-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: #60A5FA;
+        }
+        
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+        
+        .doc-link {
+            background: #111827;
+            padding: 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            color: #F3F4F6;
+            border: 2px solid #374151;
+            transition: all 0.3s ease;
+            display: block;
+        }
+        
+        .doc-link:hover {
+            border-color: #3B82F6;
+            transform: translateX(5px);
+        }
+        
+        .doc-link h4 {
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: #60A5FA;
+        }
+        
+        .doc-link p {
+            font-size: 0.9rem;
+            color: #9CA3AF;
+        }
+        
+        .quick-start {
+            background: linear-gradient(135deg, #059669, #047857);
+            padding: 2rem;
+            border-radius: 1rem;
+            margin: 2rem 0;
+            text-align: center;
+        }
+        
+        .quick-start h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .code-block {
+            background: #111827;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 1rem;
+            text-align: left;
+            margin: 1rem 0;
+            border: 2px solid #374151;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+        
+        .stat-card {
+            background: #1F2937;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            border: 2px solid #374151;
+        }
+        
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #3B82F6;
+            margin-bottom: 0.5rem;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #9CA3AF;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+            border-top: 2px solid #374151;
+            color: #9CA3AF;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="emoji">📊</div>
+            <h1>Smart Task Scheduler</h1>
+            <p>Optimize your tasks using advanced scheduling algorithms</p>
+            
+            <div class="hero-buttons">
+                <a href="frontend/index.html" class="btn btn-primary">
+                    <span>🚀</span> Launch Application
+                </a>
+                <a href="QUICK_START.md" class="btn btn-secondary">
+                    <span>📖</span> Quick Start Guide
+                </a>
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-card">
+                <div class="stat-value">3</div>
+                <div class="stat-label">Algorithms</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">25+</div>
+                <div class="stat-label">Features</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Complete</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">6</div>
+                <div class="stat-label">Docs</div>
+            </div>
+        </div>
+        
+        <div class="quick-start">
+            <h2>⚡ Ultra-Quick Start</h2>
+            <p>Get started in seconds!</p>
+            <div class="code-block">
+                cd e:\DAA2\frontend<br>
+                start index.html
+            </div>
+            <p style="margin-top: 1rem;">Or simply click the "Launch Application" button above!</p>
+        </div>
+        
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Multi-Step Wizard</h3>
+                <ul>
+                    <li>Easy data entry</li>
+                    <li>Task count selection</li>
+                    <li>Detailed task inputs</li>
+                    <li>Capacity setting</li>
+                    <li>Interactive review</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📈</div>
+                <h3>Gantt Chart</h3>
+                <ul>
+                    <li>Visual timeline</li>
+                    <li>Color-coded priorities</li>
+                    <li>Hover tooltips</li>
+                    <li>Dependency indicators</li>
+                    <li>Interactive bars</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">⚙️</div>
+                <h3>Three Algorithms</h3>
+                <ul>
+                    <li>Activity Selection</li>
+                    <li>Bellman-Ford</li>
+                    <li>0/1 Knapsack</li>
+                    <li>Dependency resolution</li>
+                    <li>Profit maximization</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">📊</div>
+                <h3>Results Dashboard</h3>
+                <ul>
+                    <li>Summary statistics</li>
+                    <li>Line graph</li>
+                    <li>Bar chart</li>
+                    <li>Pie chart</li>
+                    <li>Detailed table</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">✅</div>
+                <h3>Validation</h3>
+                <ul>
+                    <li>Input checking</li>
+                    <li>Circular dependency detection</li>
+                    <li>Error messages</li>
+                    <li>Toast notifications</li>
+                    <li>Helpful feedback</li>
+                </ul>
+            </div>
+            
+            <div class="feature-card">
+                <div class="feature-icon">💾</div>
+                <h3>Export & More</h3>
+                <ul>
+                    <li>JSON export</li>
+                    <li>Sortable tables</li>
+                    <li>Reset functionality</li>
+                    <li>Dark theme UI</li>
+                    <li>Responsive design</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="docs-section">
+            <h2>📚 Documentation</h2>
+            <div class="docs-grid">
+                <a href="QUICK_START.md" class="doc-link">
+                    <h4>⭐ Quick Start</h4>
+                    <p>Step-by-step guide to get started immediately</p>
+                </a>
+                
+                <a href="PROJECT_SUMMARY.md" class="doc-link">
+                    <h4>📊 Project Summary</h4>
+                    <p>Complete overview of all features and capabilities</p>
+                </a>
+                
+                <a href="ARCHITECTURE.md" class="doc-link">
+                    <h4>🏗️ Architecture</h4>
+                    <p>System design, data flow, and component diagrams</p>
+                </a>
+                
+                <a href="TESTING_GUIDE.md" class="doc-link">
+                    <h4>🧪 Testing Guide</h4>
+                    <p>Comprehensive testing procedures and scenarios</p>
+                </a>
+                
+                <a href="README.md" class="doc-link">
+                    <h4>📖 README</h4>
+                    <p>Basic project information and setup instructions</p>
+                </a>
+                
+                <a href="INDEX.md" class="doc-link">
+                    <h4>📚 Documentation Index</h4>
+                    <p>Complete navigation guide for all documentation</p>
+                </a>
+            </div>
+        </div>
+        
+        <div class="docs-section">
+            <h2>🧪 Test Data</h2>
+            <p style="margin-bottom: 1rem;">Sample datasets for testing different scenarios:</p>
+            <div class="docs-grid">
+                <div class="doc-link">
+                    <h4>📄 Simple Schedule</h4>
+                    <p>6 tasks, no dependencies - Tests activity selection</p>
+                    <code style="color: #60A5FA;">assets/test_data_simple.json</code>
+                </div>
+                
+                <div class="doc-link">
+                    <h4>📄 Complex Dependencies</h4>
+                    <p>8 tasks, dependencies - Tests Bellman-Ford</p>
+                    <code style="color: #60A5FA;">assets/test_data_dependencies.json</code>
+                </div>
+                
+                <div class="doc-link">
+                    <h4>📄 Profit Optimization</h4>
+                    <p>10 tasks, limited capacity - Tests Knapsack</p>
+                    <code style="color: #60A5FA;">assets/test_data_knapsack.json</code>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p><strong>Smart Task Scheduler</strong></p>
+            <p>Built with HTML, CSS, JavaScript, Python & C</p>
+            <p style="margin-top: 1rem;">Using Activity Selection, Bellman-Ford & 0/1 Knapsack Algorithms</p>
+            <p style="margin-top: 0.5rem; font-size: 0.875rem;">October 31, 2025</p>
+        </div>
+    </div>
+</body>
+</html>

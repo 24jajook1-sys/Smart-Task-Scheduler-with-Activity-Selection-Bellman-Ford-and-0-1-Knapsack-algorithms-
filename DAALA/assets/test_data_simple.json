@@ -1,0 +1,66 @@
+{
+  "testScenario": "Simple Project Schedule - No Dependencies",
+  "description": "Basic task scheduling without dependencies to test activity selection",
+  "taskCount": 6,
+  "workCapacity": 20,
+  "tasks": [
+    {
+      "id": 1,
+      "name": "Project Planning",
+      "startTime": 0,
+      "finishTime": 3,
+      "profit": 100,
+      "priority": "High",
+      "dependencies": []
+    },
+    {
+      "id": 2,
+      "name": "Requirements Gathering",
+      "startTime": 2,
+      "finishTime": 5,
+      "profit": 80,
+      "priority": "High",
+      "dependencies": []
+    },
+    {
+      "id": 3,
+      "name": "UI/UX Design",
+      "startTime": 4,
+      "finishTime": 8,
+      "profit": 120,
+      "priority": "Medium",
+      "dependencies": []
+    },
+    {
+      "id": 4,
+      "name": "Database Design",
+      "startTime": 6,
+      "finishTime": 10,
+      "profit": 90,
+      "priority": "Medium",
+      "dependencies": []
+    },
+    {
+      "id": 5,
+      "name": "Code Review",
+      "startTime": 9,
+      "finishTime": 12,
+      "profit": 70,
+      "priority": "Low",
+      "dependencies": []
+    },
+    {
+      "id": 6,
+      "name": "Documentation",
+      "startTime": 11,
+      "finishTime": 14,
+      "profit": 60,
+      "priority": "Low",
+      "dependencies": []
+    }
+  ],
+  "expectedResults": {
+    "note": "Should select non-overlapping tasks that maximize count",
+    "optimalSelection": "Tasks that don't overlap in time"
+  }
+}

@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Task Scheduler - Optimize Your Tasks</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="header-title">
+                <span class="icon">📊</span> Smart Task Scheduler
+            </h1>
+            <p class="header-subtitle">Optimize your tasks using advanced scheduling algorithms</p>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-container">
+        <div class="container">
+            
+            <!-- Progress Bar -->
+            <div class="progress-container" id="progressContainer">
+                <div class="progress-step active" data-step="1">
+                    <div class="progress-circle">1</div>
+                    <div class="progress-label">Task Count</div>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="2">
+                    <div class="progress-circle">2</div>
+                    <div class="progress-label">Task Details</div>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="3">
+                    <div class="progress-circle">3</div>
+                    <div class="progress-label">Capacity</div>
+                </div>
+                <div class="progress-line"></div>
+                <div class="progress-step" data-step="4">
+                    <div class="progress-circle">4</div>
+                    <div class="progress-label">Review</div>
+                </div>
+            </div>
+
+            <!-- Step 1: Task Count -->
+            <section class="form-section active" id="step1">
+                <div class="card">
+                    <h2 class="section-title">Step 1: How many tasks do you want to schedule?</h2>
+                    <div class="form-group">
+                        <label for="taskCount">Number of Tasks</label>
+                        <input type="number" id="taskCount" min="1" max="100" value="5" class="input-field">
+                        <small class="help-text">Enter a number between 1 and 100</small>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn-primary" onclick="goToStep2()">Next Step →</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 2: Task Details -->
+            <section class="form-section" id="step2">
+                <div class="card">
+                    <h2 class="section-title">Step 2: Enter Task Details</h2>
+                    <p class="help-text">Fill in the details for each task</p>
+                    
+                    <div id="taskFormsContainer"></div>
+                    
+                    <div class="button-group">
+                        <button class="btn btn-secondary" onclick="goToStep1()">← Back</button>
+                        <button class="btn btn-primary" onclick="goToStep3()">Next Step →</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 3: Capacity -->
+            <section class="form-section" id="step3">
+                <div class="card">
+                    <h2 class="section-title">Step 3: Set Work Capacity</h2>
+                    <div class="form-group">
+                        <label for="workCapacity">Maximum Hours Available</label>
+                        <input type="number" id="workCapacity" min="1" max="168" value="40" step="0.5" class="input-field">
+                        <small class="help-text">Enter the total hours you have available for work</small>
+                    </div>
+                    <div class="button-group">
+                        <button class="btn btn-secondary" onclick="goToStep2()">← Back</button>
+                        <button class="btn btn-primary" onclick="goToStep4()">Review Tasks →</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Step 4: Review & Gantt Chart -->
+            <section class="form-section" id="step4">
+                <div class="card">
+                    <h2 class="section-title">Step 4: Review Your Tasks</h2>
+                    
+                    <!-- Summary Stats -->
+                    <div class="stats-grid">
+                        <div class="stat-card">
+                            <div class="stat-value" id="reviewTotalTasks">0</div>
+                            <div class="stat-label">Total Tasks</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="reviewTotalDuration">0h</div>
+                            <div class="stat-label">Total Duration</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="reviewTotalProfit">0</div>
+                            <div class="stat-label">Total Profit</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-value" id="reviewCapacity">0h</div>
+                            <div class="stat-label">Work Capacity</div>
+                        </div>
+                    </div>
+
+                    <!-- Gantt Chart -->
+                    <div class="gantt-container">
+                        <h3 class="subsection-title">Gantt Chart - Task Timeline</h3>
+                        <div class="gantt-legend">
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #EF4444;"></span>
+                                <span>High Priority</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #F59E0B;"></span>
+                                <span>Medium Priority</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #10B981;"></span>
+                                <span>Low Priority</span>
+                            </div>
+                            <div class="legend-item">
+                                <span class="legend-color" style="background: #F97316;"></span>
+                                <span>Dependencies</span>
+                            </div>
+                        </div>
+                        <div id="ganttChart" class="gantt-chart"></div>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn btn-secondary" onclick="goToStep3()">← Back</button>
+                        <button class="btn btn-success" onclick="optimizeSchedule()">
+                            <span class="btn-icon">⚡</span> Optimize Schedule
+                        </button>
+                        <button class="btn btn-danger" onclick="resetAll()">
+                            <span class="btn-icon">🔄</span> Reset All
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Results Section -->
+            <section class="form-section" id="resultsSection">
+                <div class="card">
+                    <div class="results-header">
+                        <h2 class="section-title">Optimization Results</h2>
+                        <button class="btn btn-primary btn-sm" onclick="exportResults()">
+                            <span class="btn-icon">💾</span> Export JSON
+                        </button>
+                    </div>
+
+                    <!-- Summary Cards -->
+                    <div class="stats-grid">
+                        <div class="stat-card stat-card-primary">
+                            <div class="stat-value" id="resultSelectedTasks">0</div>
+                            <div class="stat-label">Selected Tasks</div>
+                        </div>
+                        <div class="stat-card stat-card-success">
+                            <div class="stat-value" id="resultTotalDuration">0h</div>
+                            <div class="stat-label">Total Duration</div>
+                        </div>
+                        <div class="stat-card stat-card-warning">
+                            <div class="stat-value" id="resultTotalProfit">0</div>
+                            <div class="stat-label">Total Profit</div>
+                        </div>
+                        <div class="stat-card stat-card-info">
+                            <div class="stat-value" id="resultEfficiency">0</div>
+                            <div class="stat-label">Efficiency (Profit/Hour)</div>
+                        </div>
+                    </div>
+
+                    <!-- Charts Grid -->
+                    <div class="charts-grid">
+                        <div class="chart-container">
+                            <h3 class="subsection-title">Profit vs Duration</h3>
+                            <canvas id="lineChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3 class="subsection-title">Task Execution Order</h3>
+                            <canvas id="barChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3 class="subsection-title">Priority Distribution</h3>
+                            <canvas id="pieChart"></canvas>
+                        </div>
+                        <div class="chart-container">
+                            <h3 class="subsection-title">Performance Metrics</h3>
+                            <div class="metrics-list">
+                                <div class="metric-item">
+                                    <span class="metric-label">Average Profit per Task:</span>
+                                    <span class="metric-value" id="avgProfit">0</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Average Duration:</span>
+                                    <span class="metric-value" id="avgDuration">0h</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Capacity Utilization:</span>
+                                    <span class="metric-value" id="capacityUtil">0%</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">High Priority Tasks:</span>
+                                    <span class="metric-value" id="highPriorityCount">0</span>
+                                </div>
+                                <div class="metric-item">
+                                    <span class="metric-label">Algorithm Used:</span>
+                                    <span class="metric-value">Combined Optimization</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Results Table -->
+                    <div class="table-container">
+                        <h3 class="subsection-title">Detailed Task Results</h3>
+                        <table class="results-table" id="resultsTable">
+                            <thead>
+                                <tr>
+                                    <th onclick="sortTable(0)">ID <span class="sort-icon">↕</span></th>
+                                    <th onclick="sortTable(1)">Task Name <span class="sort-icon">↕</span></th>
+                                    <th onclick="sortTable(2)">Start Time <span class="sort-icon">↕</span></th>
+                                    <th onclick="sortTable(3)">Finish Time <span class="sort-icon">↕</span></th>
+                                    <th onclick="sortTable(4)">Duration <span class="sort-icon">↕</span></th>
+                                    <th onclick="sortTable(5)">Profit <span class="sort-icon">↕</span></th>
+                                    <th onclick="sortTable(6)">Priority <span class="sort-icon">↕</span></th>
+                                    <th onclick="sortTable(7)">Status <span class="sort-icon">↕</span></th>
+                                </tr>
+                            </thead>
+                            <tbody id="resultsTableBody">
+                                <!-- Results will be populated here -->
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="button-group">
+                        <button class="btn btn-secondary" onclick="goToStep4()">← Back to Review</button>
+                        <button class="btn btn-primary" onclick="exportResults()">
+                            <span class="btn-icon">💾</span> Export Results
+                        </button>
+                        <button class="btn btn-danger" onclick="resetAll()">
+                            <span class="btn-icon">🔄</span> Start Over
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>Smart Task Scheduler | Using Activity Selection, Bellman-Ford & 0/1 Knapsack Algorithms</p>
+            <p class="footer-note">Built with HTML, CSS, JavaScript, Python & C</p>
+        </div>
+    </footer>
+
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+        <p class="loading-text">Optimizing your schedule...</p>
+    </div>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast"></div>
+
+    <script src="app.js"></script>
+</body>
+</html>

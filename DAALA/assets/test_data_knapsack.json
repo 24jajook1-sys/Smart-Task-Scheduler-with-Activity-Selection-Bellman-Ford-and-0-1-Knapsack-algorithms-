@@ -1,0 +1,103 @@
+{
+  "testScenario": "High Profit Optimization - Knapsack Focus",
+  "description": "Many tasks with limited capacity to test profit maximization",
+  "taskCount": 10,
+  "workCapacity": 15,
+  "tasks": [
+    {
+      "id": 1,
+      "name": "High Value Task A",
+      "startTime": 0,
+      "finishTime": 2,
+      "profit": 200,
+      "priority": "High",
+      "dependencies": []
+    },
+    {
+      "id": 2,
+      "name": "High Value Task B",
+      "startTime": 1,
+      "finishTime": 4,
+      "profit": 250,
+      "priority": "High",
+      "dependencies": []
+    },
+    {
+      "id": 3,
+      "name": "Medium Value Task C",
+      "startTime": 3,
+      "finishTime": 6,
+      "profit": 150,
+      "priority": "Medium",
+      "dependencies": []
+    },
+    {
+      "id": 4,
+      "name": "Quick Win Task D",
+      "startTime": 5,
+      "finishTime": 7,
+      "profit": 180,
+      "priority": "High",
+      "dependencies": []
+    },
+    {
+      "id": 5,
+      "name": "Long Task E",
+      "startTime": 6,
+      "finishTime": 11,
+      "profit": 300,
+      "priority": "High",
+      "dependencies": []
+    },
+    {
+      "id": 6,
+      "name": "Short Task F",
+      "startTime": 8,
+      "finishTime": 9.5,
+      "profit": 100,
+      "priority": "Medium",
+      "dependencies": []
+    },
+    {
+      "id": 7,
+      "name": "Medium Task G",
+      "startTime": 9,
+      "finishTime": 12,
+      "profit": 170,
+      "priority": "Medium",
+      "dependencies": []
+    },
+    {
+      "id": 8,
+      "name": "Quick Task H",
+      "startTime": 11,
+      "finishTime": 13,
+      "profit": 140,
+      "priority": "Low",
+      "dependencies": []
+    },
+    {
+      "id": 9,
+      "name": "Final Task I",
+      "startTime": 12,
+      "finishTime": 15,
+      "profit": 160,
+      "priority": "Medium",
+      "dependencies": []
+    },
+    {
+      "id": 10,
+      "name": "Bonus Task J",
+      "startTime": 14,
+      "finishTime": 16,
+      "profit": 120,
+      "priority": "Low",
+      "dependencies": []
+    }
+  ],
+  "expectedResults": {
+    "note": "Should maximize total profit within 15-hour capacity constraint",
+    "challenge": "Choose best combination of tasks that fit in limited time",
+    "optimalStrategy": "Select high profit-per-hour ratio tasks"
+  }
+}
